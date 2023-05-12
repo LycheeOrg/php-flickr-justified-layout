@@ -1,0 +1,30 @@
+{
+    "name": "lychee-org/php-flickr-justified-layout",
+    "description": "Port of the famous flikr justified layout JS gallery to php for serverside computation",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "LycheeOrg\\PhpFlickrJustifiedLayout\\": "src/"
+        }
+    },
+    "require": {
+        "illuminate/collections": "^10.10"
+    },
+    "require-dev": {
+        "lychee-org/phpstan-lychee": "^v1.0.1"
+    },
+
+    "scripts": {
+        "fix-code-style": [
+            "vendor/bin/php-cs-fixer fix -v --config=.php-cs-fixer.php ./src/"
+        ],
+        "validate-files": [
+            "vendor/bin/parallel-lint --exclude vendor --exclude imagick ."
+        ],
+        "phpstan": [
+            "vendor/bin/phpstan analyze"
+        ]
+    }
+}

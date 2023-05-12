@@ -1,0 +1,10 @@
+includes:
+	- vendor/lychee-org/phpstan-lychee/phpstan.neon
+
+parameters:
+	reportMaybesInPropertyPhpDocTypes: true
+	checkMissingIterableValueType: true
+	paths:
+		- src
+	ignoreErrors:
+#		- '#Array has (2|3) duplicate keys#'
