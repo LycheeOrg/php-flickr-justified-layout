@@ -1,6 +1,8 @@
 # Flickr's Justified Layout
 
-[![Build Status](https://travis-ci.org/flickr/justified-layout.svg?branch=master)](https://travis-ci.org/flickr/justified-layout) [![Coverage Status](https://coveralls.io/repos/github/flickr/justified-layout/badge.svg?branch=master)](https://coveralls.io/github/flickr/justified-layout?branch=master)
+
+[![Build Status](https://img.shields.io/github/actions/workflow/status/LycheeOrg/php-flickr-justified-layout/php.yml)](https://github.com/LycheeOrg/php-flickr-justified-layout/actions)
+[![Coverage Status](https://img.shields.io/codecov/c/github/LycheeOrg/php-flickr-justified-layout)](https://app.codecov.io/gh/LycheeOrg/php-flickr-justified-layout)
 
 Pass in box sizes and get back sizes and coordinates for a nice justified layout like that seen all
 over Flickr. The <a href="https://www.flickr.com/explore">explore page</a> is a great example. Here's
