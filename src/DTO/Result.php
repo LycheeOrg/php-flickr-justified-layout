@@ -6,13 +6,13 @@ use Illuminate\Support\Collection;
 
 class Result
 {
-	public int $containerHeight;
-	public int $widowCount;
+	public readonly int $containerHeight;
+	public readonly int $widowCount;
 
 	/**
 	 * @var Collection<int,Item> boxes
 	 */
-	public Collection $boxes;
+	public readonly Collection $boxes;
 
 	/**
 	 * Result object of the computations.

@@ -91,11 +91,33 @@ class Row
 		$this->height = 0;
 	}
 
+    /**
+    /**
+     * Attempt to add a single item to the row.
+     * This is the heart of the justified algorithm.
+     * This method is direction-agnostic; it deals only with sizes, not positions.
+     *
+     * If the item fits in the row, without pushing row height beyond min/max tolerance,
+     * the item is added and the method returns true.
+     *
+     * If the item leaves row height too high, there may be room to scale it down and add another item.
+     * In this case, the item is added and the method returns true, but the row is incomplete.
+     *
+     * If the item leaves row height too short, there are too many items to fit within tolerance.
+     * The method will either accept or reject the new item, favoring the resulting row height closest to within tolerance.
+     * If the item is rejected, left/right padding will be required to fit the row height within tolerance;
+     * if the item is accepted, top/bottom cropping will be required to fit the row height within tolerance.
+     *
+     * @param Item $itemData Item layout data, containing item aspect ratio.
+     * @return bool True if successfully added; false if rejected.
+     */
 	public function addItem(Item $itemData): bool
 	{
 		$newItems = $this->items->concat([$itemData]);
 
 		$rowWidthWithoutSpacing = $this->width - ($newItems->count() - 1) * $this->spacing;
+        $newAspectRatio = $newItems->reduce(fn (float $sum, Item $item) => $sum + $item->aspectRatio, 0);
+        $targetAspectRatio = $rowWidthWithoutSpacing / $this->targetRowHeight;
 
 		// Handle big full-width breakout photos if we're doing them
 		if ($this->isBreakoutRow) {
@@ -112,8 +134,6 @@ class Row
 			}
 		}
 
-		$newAspectRatio = $newItems->reduce(fn (float $sum, Item $item) => $sum + $item->aspectRatio, 0);
-		$targetAspectRatio = $rowWidthWithoutSpacing / $this->targetRowHeight;
 
 		if ($newAspectRatio < $this->minAspectRatio) {
 			// New aspect ratio is too narrow / scaled row height is too tall.
@@ -208,11 +228,9 @@ class Row
 			$clampedToNativeRatio = 1.0;
 		}
 
-		$itemWidthSum = 0;
-
 		// Compute item geometry based on $newHeight.
 		$this->items->each(
-			function (Item $item) use ($clampedToNativeRatio, &$itemWidthSum) {
+			function (Item &$item) use ($clampedToNativeRatio, &$itemWidthSum) {
 				$item->top = $this->top;
 				$item->width = intval($item->aspectRatio * $this->height * $clampedToNativeRatio);
 				$item->height = $this->height;
@@ -238,17 +256,17 @@ class Row
 
 			if ($this->items->count() === 1) {
 				// For rows with only one item, adjust item width to fill row.
-				$singleItemGeometry = $this->items[0];
+				$singleItemGeometry = $this->items->get(0);
 				$singleItemGeometry->width -= (int) round($errorWidthPerItem);
 			} else {
 				// For rows with multiple items, adjust item width and shift items to fill the row,
 				// while maintaining equal spacing between items in the row.
-				$this->items->each(function ($item, $i) use ($roundedCumulativeErrors) {
+				$this->items->each(function (&$item, $i) use ($roundedCumulativeErrors) {
 					if ($i > 0) {
-						$item->left -= $roundedCumulativeErrors[$i - 1];
-						$item->width -= ($roundedCumulativeErrors[$i] - $roundedCumulativeErrors[$i - 1]);
+						$item->left -= $roundedCumulativeErrors->get($i - 1);
+						$item->width -= ($roundedCumulativeErrors->get($i) - $roundedCumulativeErrors->get($i - 1));
 					} else {
-						$item->width -= $roundedCumulativeErrors[$i];
+						$item->width -= $roundedCumulativeErrors->get($i);
 					}
 				});
 			}

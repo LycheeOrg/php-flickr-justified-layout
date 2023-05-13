@@ -6,6 +6,7 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
+            "Tests\\": "tests/",
             "LycheeOrg\\PhpFlickrJustifiedLayout\\": "src/"
         }
     },
@@ -13,12 +14,19 @@
         "illuminate/collections": "^10.10"
     },
     "require-dev": {
-        "lychee-org/phpstan-lychee": "^v1.0.1"
+        "lychee-org/phpstan-lychee": "^v1.0.1",
+        "phpunit/phpunit": "^10.2@dev",
+        "netresearch/jsonmapper": "dev-master",
+        "helmich/phpunit-json-assert": "dev-master",
+        "symfony/var-dumper": "6.3.x-dev"
     },
 
     "scripts": {
         "fix-code-style": [
             "vendor/bin/php-cs-fixer fix -v --config=.php-cs-fixer.php ./src/"
+        ],
+        "test": [
+            "XDEBUG_MODE=coverage vendor/bin/phpunit tests"
         ],
         "validate-files": [
             "vendor/bin/parallel-lint --exclude vendor --exclude imagick ."

@@ -2,20 +2,20 @@
 
 namespace LycheeOrg\PhpFlickrJustifiedLayout\DTO;
 
-class Param
+final class Param
 {
 	public function __construct(
-		public int $top,
-		public int $left,
-		public int $width,
-		public int $spacing,
-		public int $targetRowHeight,
-		public float $targetRowHeightTolerance,
-		public int $edgeCaseMinRowHeight,
-		public int $edgeCaseMaxRowHeight,
-		public bool $rightToLeft,
-		public bool $isBreakoutRow,
-		public string $widowLayoutStyle,
+		public readonly int $top,
+		public readonly int $left,
+		public readonly int $width,
+		public readonly int $spacing,
+		public readonly int $targetRowHeight,
+		public readonly float $targetRowHeightTolerance,
+		public readonly int $edgeCaseMinRowHeight,
+		public readonly int $edgeCaseMaxRowHeight,
+		public readonly bool $rightToLeft,
+		public readonly bool $isBreakoutRow,
+		public readonly string $widowLayoutStyle,
 	) {
 	}
 }

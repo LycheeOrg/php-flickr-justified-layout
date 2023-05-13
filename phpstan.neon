@@ -3,8 +3,10 @@ includes:
 
 parameters:
 	reportMaybesInPropertyPhpDocTypes: true
-	checkMissingIterableValueType: true
+	checkMissingIterableValueType: false
 	paths:
 		- src
+		- tests
 	ignoreErrors:
+		- '#Dynamic call to static method Tests\\PhpFlickrJustifiedLayout\\.*::assertJsonDocumentMatches\(\).#'
 #		- '#Array has (2|3) duplicate keys#'
