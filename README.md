@@ -1,4 +1,4 @@
-# Flickr's Justified Layout
+# Flickr's Justified Layout in PHP
 
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/LycheeOrg/php-flickr-justified-layout/php.yml)](https://github.com/LycheeOrg/php-flickr-justified-layout/actions)
@@ -45,6 +45,12 @@ Which gives you everything you need to make something like this:
 
 ![Demonstration](https://cloud.githubusercontent.com/assets/43693/14033849/f5cffb58-f1da-11e5-9763-dce7e90835e1.png)
 
+## Why?
+
+Instead of relying on another JS dependency to apply those computations on the client side,
+this allows us to do them on server side (assuming we know the intended width of the container).
+
+It does come with the constraint that reformating the window may have uninteded effect.
 
 ## Install
 
