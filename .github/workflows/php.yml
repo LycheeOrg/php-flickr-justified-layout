@@ -121,7 +121,7 @@ jobs:
         run: mkdir -p build/logs
 
       - name: Run tests
-        run: composer tests
+        run: composer test
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
