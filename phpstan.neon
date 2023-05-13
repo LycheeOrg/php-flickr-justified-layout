@@ -9,4 +9,6 @@ parameters:
 		- src
 		- tests
 	ignoreErrors:
-#		- '#Array has (2|3) duplicate keys#'
+		-  '#Access to an undefined property LycheeOrg\\PhpFlickrJustifiedLayout\\Contracts\\AspectRatio::\$aspect_ratio.#'
+		-  '#Access to an undefined property LycheeOrg\\PhpFlickrJustifiedLayout\\Contracts\\WidthHeight::\$height.#'
+		-  '#Access to an undefined property LycheeOrg\\PhpFlickrJustifiedLayout\\Contracts\\WidthHeight::\$width.#'

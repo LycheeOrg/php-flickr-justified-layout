@@ -12,7 +12,7 @@ class LayoutConfig
 	public readonly HorizontalVertical $boxSpacing;
 	public readonly int $targetRowHeight;
 	public readonly float $targetRowHeightTolerance;
-	public readonly int $maxNumRows;
+	public readonly false|int $maxNumRows;
 	public readonly false|float $forceAspectRatio;
 	public readonly bool $showWidows;
 	public readonly false|int $fullWidthBreakoutRowCadence;
@@ -24,7 +24,7 @@ class LayoutConfig
 		null|int|HorizontalVertical $boxSpacing = null,
 		null|int $targetRowHeight = null,
 		null|float $targetRowHeightTolerance = null,
-		null|int $maxNumRows = null,
+		null|false|int $maxNumRows = null,
 		null|false|float $forceAspectRatio = null,
 		null|bool $showWidows = null,
 		null|false|int $fullWidthBreakoutRowCadence = null,
@@ -33,7 +33,7 @@ class LayoutConfig
 		$this->containerWidth = $containerWidth ?? 1060;
 		$this->targetRowHeight = $targetRowHeight ?? 320;
 		$this->targetRowHeightTolerance = $targetRowHeightTolerance ?? 0.25;
-		$this->maxNumRows = $maxNumRows ?? -1;
+		$this->maxNumRows = $maxNumRows ?? false;
 		$this->forceAspectRatio = $forceAspectRatio ?? false;
 		$this->showWidows = $showWidows ?? true;
 		$this->fullWidthBreakoutRowCadence = $fullWidthBreakoutRowCadence ?? false;
