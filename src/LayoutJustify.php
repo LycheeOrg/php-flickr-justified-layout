@@ -12,11 +12,11 @@ use LycheeOrg\PhpFlickrJustifiedLayout\DTO\Result;
 
 class LayoutJustify
 {
-    /** @var LayoutData $layoutData contains the current state of the layout */
-    private LayoutData $layoutData;
+	/** @var LayoutData contains the current state of the layout */
+	private LayoutData $layoutData;
 
-    /** @var LayoutConfig $layoutConfig Contains the Layout configuration */
-    private LayoutConfig $layoutConfig;
+	/** @var LayoutConfig Contains the Layout configuration */
+	private LayoutConfig $layoutConfig;
 
 	/**
 	 * Create a new, empty row.
@@ -49,7 +49,7 @@ class LayoutJustify
 	 * Add a completed row to the layout.
 	 * Note: the row must have already been completed.
 	 *
-	 * @param Row          $row
+	 * @param Row $row
 	 *
 	 * @return Collection<int,Item>
 	 */
@@ -87,7 +87,6 @@ class LayoutJustify
 
 		// Loop through the items
 		$itemLayoutData->some(function ($itemData, $i) use (&$currentRow, &$laidOutItems) {
-
 			// Attempt to add item to the current row.
 			$itemAdded = $currentRow->addItem($itemData);
 
@@ -120,7 +119,7 @@ class LayoutJustify
 				}
 			}
 
-            return false;
+			return false;
 		});
 
 		// Handle any leftover content (orphans) depending on where they lie
@@ -165,9 +164,9 @@ class LayoutJustify
 	 */
 	public function compute(Collection $input, LayoutConfig $config = new LayoutConfig()): Result
 	{
-        $this->layoutConfig = $config;
+		$this->layoutConfig = $config;
 		$this->layoutData = new LayoutData();
-        $this->layoutData->_containerHeight = $config->containerPadding->top;
+		$this->layoutData->_containerHeight = $config->containerPadding->top;
 
 		// Convert widths and heights to aspect ratios if we need to
 		$items = $input->map(fn (AspectRatio|WidthHeight $it) => ($it instanceof WidthHeight) ? Item::ofWidthHeight($it) : Item::ofAspectRatio($it));

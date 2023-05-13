@@ -40,15 +40,15 @@ class LayoutConfig
 		$this->widowLayoutStyle = $widowLayoutStyle ?? 'left';
 
 		if (is_int($containerPadding)) {
-            $containerPadding = new LeftRightTopBottom($containerPadding, $containerPadding, $containerPadding, $containerPadding);
+			$containerPadding = new LeftRightTopBottom($containerPadding, $containerPadding, $containerPadding, $containerPadding);
 		}
 
-        $this->containerPadding = $containerPadding ?? new LeftRightTopBottom(10, 10, 10, 10);
+		$this->containerPadding = $containerPadding ?? new LeftRightTopBottom(10, 10, 10, 10);
 
 		if (is_int($boxSpacing)) {
-            $boxSpacing = new HorizontalVertical($boxSpacing, $boxSpacing);
+			$boxSpacing = new HorizontalVertical($boxSpacing, $boxSpacing);
 		}
 
-        $this->boxSpacing = $boxSpacing ?? new HorizontalVertical(10, 10);
+		$this->boxSpacing = $boxSpacing ?? new HorizontalVertical(10, 10);
 	}
 }

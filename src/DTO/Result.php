@@ -27,16 +27,17 @@ class Result implements Arrayable
 		$this->widowCount = $layoutData->_widowCount;
 	}
 
-    /**
-     * Arrayify the result
-     *
-     * @return array
-     */
-    public function toArray(): array {
-        return [
-            'containerHeight' => $this->containerHeight,
-            'widowCount' => $this->widowCount,
-            'boxes' => $this->boxes->toArray(),
-        ];
-    }
+	/**
+	 * Arrayify the result.
+	 *
+	 * @return array
+	 */
+	public function toArray(): array
+	{
+		return [
+			'containerHeight' => $this->containerHeight,
+			'widowCount' => $this->widowCount,
+			'boxes' => $this->boxes->toArray(),
+		];
+	}
 }

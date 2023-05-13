@@ -91,32 +91,33 @@ class Row
 		$this->height = 0;
 	}
 
-    /**
-     * Attempt to add a single item to the row.
-     * This is the heart of the justified algorithm.
-     * This method is direction-agnostic; it deals only with sizes, not positions.
-     *
-     * If the item fits in the row, without pushing row height beyond min/max tolerance,
-     * the item is added and the method returns true.
-     *
-     * If the item leaves row height too high, there may be room to scale it down and add another item.
-     * In this case, the item is added and the method returns true, but the row is incomplete.
-     *
-     * If the item leaves row height too short, there are too many items to fit within tolerance.
-     * The method will either accept or reject the new item, favoring the resulting row height closest to within tolerance.
-     * If the item is rejected, left/right padding will be required to fit the row height within tolerance;
-     * if the item is accepted, top/bottom cropping will be required to fit the row height within tolerance.
-     *
-     * @param Item $itemData Item layout data, containing item aspect ratio.
-     * @return bool True if successfully added; false if rejected.
-     */
+	/**
+	 * Attempt to add a single item to the row.
+	 * This is the heart of the justified algorithm.
+	 * This method is direction-agnostic; it deals only with sizes, not positions.
+	 *
+	 * If the item fits in the row, without pushing row height beyond min/max tolerance,
+	 * the item is added and the method returns true.
+	 *
+	 * If the item leaves row height too high, there may be room to scale it down and add another item.
+	 * In this case, the item is added and the method returns true, but the row is incomplete.
+	 *
+	 * If the item leaves row height too short, there are too many items to fit within tolerance.
+	 * The method will either accept or reject the new item, favoring the resulting row height closest to within tolerance.
+	 * If the item is rejected, left/right padding will be required to fit the row height within tolerance;
+	 * if the item is accepted, top/bottom cropping will be required to fit the row height within tolerance.
+	 *
+	 * @param Item $itemData item layout data, containing item aspect ratio
+	 *
+	 * @return bool true if successfully added; false if rejected
+	 */
 	public function addItem(Item $itemData): bool
 	{
 		$newItems = $this->items->concat([$itemData]);
 
 		$rowWidthWithoutSpacing = $this->width - ($newItems->count() - 1) * $this->spacing;
-        $newAspectRatio = $newItems->reduce(fn (float $sum, Item $item) => $sum + $item->aspectRatio, 0);
-        $targetAspectRatio = $rowWidthWithoutSpacing / $this->targetRowHeight;
+		$newAspectRatio = $newItems->reduce(fn (float $sum, Item $item) => $sum + $item->aspectRatio, 0);
+		$targetAspectRatio = $rowWidthWithoutSpacing / $this->targetRowHeight;
 
 		// Handle big full-width breakout photos if we're doing them
 		if ($this->isBreakoutRow) {
@@ -132,7 +133,6 @@ class Row
 				}
 			}
 		}
-
 
 		if ($newAspectRatio < $this->minAspectRatio) {
 			// New aspect ratio is too narrow / scaled row height is too tall.
