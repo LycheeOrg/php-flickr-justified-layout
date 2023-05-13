@@ -137,7 +137,7 @@ class BaseTestCase extends TestCase
     /**
      * convert an array of ratios into a collection of Aspect Ratio
      *
-     * @param array<int,int> $in
+     * @param array<int,int|float> $in
      * @return Collection<int,AR> Collection of Aspect Ratio
      */
     protected function toAR(array $in): Collection

@@ -4,9 +4,9 @@ includes:
 parameters:
 	reportMaybesInPropertyPhpDocTypes: true
 	checkMissingIterableValueType: false
+	checkGenericClassInNonGenericObjectType: false
 	paths:
 		- src
 		- tests
 	ignoreErrors:
-		- '#Dynamic call to static method PHPUnit\\Framework\\Assert::assertEquals#'
 #		- '#Array has (2|3) duplicate keys#'

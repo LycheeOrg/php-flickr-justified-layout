@@ -23,11 +23,14 @@
         "fix-code-style": [
             "vendor/bin/php-cs-fixer fix -v --config=.php-cs-fixer.php ./src/"
         ],
+        "validate-code-style": [
+            "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix -v --diff --dry-run --config=.php-cs-fixer.php ./src/"
+        ],
         "test": [
             "XDEBUG_MODE=coverage vendor/bin/phpunit tests"
         ],
         "validate-files": [
-            "vendor/bin/parallel-lint --exclude vendor --exclude imagick ."
+            "vendor/bin/parallel-lint --exclude vendor --exclude .git ."
         ],
         "phpstan": [
             "vendor/bin/phpstan analyze"

@@ -21,7 +21,7 @@ class ItemTest extends TestCase
             left: 10
         );
 
-        $this->assertEquals([
+        self::assertEquals([
             "aspectRatio" => 1,
             "top" => 10,
             "width" => 340,
