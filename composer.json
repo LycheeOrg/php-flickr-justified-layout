@@ -16,8 +16,6 @@
     "require-dev": {
         "lychee-org/phpstan-lychee": "^v1.0.1",
         "phpunit/phpunit": "^10.2@dev",
-        "netresearch/jsonmapper": "dev-master",
-        "helmich/phpunit-json-assert": "dev-master",
         "symfony/var-dumper": "6.3.x-dev"
     },
 

@@ -3,22 +3,14 @@
 namespace Tests\PhpFlickrJustifiedLayout;
 
 use Illuminate\Support\Collection;
-use Helmich\JsonAssert\JsonAssertions;
 use LycheeOrg\PhpFlickrJustifiedLayout\LayoutConfig;
 use LycheeOrg\PhpFlickrJustifiedLayout\LayoutJustify;
 use PHPUnit\Framework\TestCase;
 use Tests\PhpFlickrJustifiedLayout\DTO\AR;
 use Tests\PhpFlickrJustifiedLayout\DTO\WH;
 
-//use function Safe\file_get_contents;
-use function Safe\json_decode;
-use function Safe\realpath;
-use function Safe\file_get_contents;
-
 class BaseTestCase extends TestCase
 {
-    use JsonAssertions;
-
     protected LayoutJustify $layoutJustify;
     protected array $four_squares = [
         "containerHeight" => 710,

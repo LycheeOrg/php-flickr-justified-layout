@@ -2,207 +2,192 @@
 
 namespace Tests\PhpFlickrJustifiedLayout;
 
+use LycheeOrg\PhpFlickrJustifiedLayout\DTO\HorizontalVertical;
+use LycheeOrg\PhpFlickrJustifiedLayout\DTO\LeftRightTopBottom;
 use LycheeOrg\PhpFlickrJustifiedLayout\LayoutConfig;
-use function Safe\json_encode;
 
 class ConfigTest extends LayoutJustifyTest
 {
     /**
      * should return a layout without passing in a config',justifiedLayout([1, 1, 1, 1]);
+     *
      * @return void
      */
     public function testFourSquares()
     {
 
-        $in = $this->toAR([1,1,1,1]);
-        $result = $this->layoutJustify->compute($in);
-        $this->assertJsonDocumentMatches(json_encode($result), $this->four_squares);
-//        $this->assertJsonDocumentMatches(
-//            $result,
-//
-//        );
+        $in = $this->toAR([1, 1, 1, 1]);
+        $geometry = $this->layoutJustify->compute($in);
+        $this->assertEquals($this->four_squares, $geometry->toArray());
     }
 
-//    /**
-//     * should allow overriding of containerWidth
-//     * @return void
-//     */
-//    public function testFourSquares2()
-//    {
-//        $this->assertEquals(justifiedLayout([1, 1, 1, 1], {
-//				containerWidth: 400
-//			})).toEqual(fourSquares400);
-//    }
-//
-//    /**
-//     * should allow overriding of containerPadding
-//     * @return void
-//     */
-//    public function testPaddingInt()
-//    {
-//
-//        $geometry = justifiedLayout([1], {
-//				containerPadding: 20
-//			});
-//
-//			$this->assertEquals($geometry->boxes[0]->top) . toEqual(20);
-//			$this->assertEquals($geometry->boxes[0]->left) . toEqual(20);
-//
-//}
-//
-//    /**
-//     * should allow overriding of containerPadding with multiple dimensions
-//     * @return void
-//     */
-//    public function testPaddingAll()
-//    {
-//
-//        $geometry = justifiedLayout([1], {
-//				containerPadding: {
-//        top:
-//        50,
-//					left: 5,
-//					bottom: 10,
-//					right: 10
-//				}
-//			});
-//
-//			$this->assertEquals($geometry->boxes[0]->top) . toEqual(50);
-//			$this->assertEquals($geometry->boxes[0]->left) . toEqual(5);
-//
-//}
-//
-//    /**
-//     * should allow overriding of boxSpacing
-//     * @return void
-//     */
-//    public function testSpacingInt()
-//    {
-//
-//        $geometry = justifiedLayout([1, 1, 1, 1], {
-//				boxSpacing: 40
-//			});
-//
-//			// 10 + 320 + 40 = 370
-//			$this->assertEquals($geometry->boxes[1]->left) . toEqual(370);
-//			$this->assertEquals($geometry->boxes[3]->top) . toEqual(370);
-//
-//}
-//
-//    /**
-//     * should allow overriding of boxSpacing with multiple dimensions
-//     * @return void
-//     */
-//    public function testSpacing()
-//    {
-//
-//        $geometry = justifiedLayout([1, 1, 1, 1], {
-//				boxSpacing: {
-//        horizontal:
-//        40,
-//					vertical: 5
-//				}
-//			});
-//
-//			// 10 + 320 + 40 = 370
-//			$this->assertEquals($geometry->boxes[1]->left) . toEqual(370);
-//			// 10 + 320 + 5 = 335
-//			$this->assertEquals($geometry->boxes[3]->top) . toEqual(335);
-//
-//}
-//
-//    /**
-//     * should allow overriding of targetRowHeight
-//     * @return void
-//     */
-//    public function testRowHeight()
-//    {
-//
-//        $geometry = justifiedLayout([1, 1, 1, 1], {
-//				targetRowHeight: 255,
-//				targetRowHeightTolerance: 0
-//			});
-//
-//			$this->assertEquals($geometry->boxes[0]->height) . toEqual(255);
-//
-//}
-//
-//    /**
-//     * should allow overriding of targetRowHeightTolerance
-//     * @return void
-//     */
-//    public function testRowHeightTolerance()
-//    {
-//
-//        $geometry = justifiedLayout([1, 1, 1], {
-//				targetRowHeightTolerance: 0
-//			});
-//
-//			$this->assertEquals($geometry->boxes[0]->height) . toEqual(320);
-//
-//}
-//
-//    /**
-//     * should allow overriding of maxNumRows
-//     * @return void
-//     */
-//    public function testMaxNumRow()
-//    {
-//
-//        $geometry = justifiedLayout([1, 1, 1, 1, 1], {
-//				maxNumRows: 1
-//			});
-//
-//			$this->assertEquals($geometry->boxes->count()) . toEqual(3);
-//
-//}
-//
-//    /**
-//     * should allow overriding of forceAspectRatio
-//     * @return void
-//     */
-//    public function testForceAspectRatio()
-//    {
-//
-//        $geometry = justifiedLayout([2, 2, 2, 2], {
-//				forceAspectRatio: 1
-//			});
-//
-//			$this->assertEquals($geometry->boxes[0]->width) . toEqual(340);
-//			$this->assertEquals($geometry->boxes[0]->height) . toEqual(340);
-//			$this->assertEquals($geometry->boxes[0]->forcedAspectRatio) . toEqual(true);
-//
-//}
-//
-//    /**
-//     * should allow overriding of showWidows
-//     * @return void
-//     */
-//    public function testNoWidows()
-//    {
-//
-//        $geometry = justifiedLayout([1, 1, 1, 1], {
-//				showWidows: false
-//			});
-//
-//			$this->assertEquals($geometry->boxes->count()) . toEqual(3);
-//
-//}
-//
-//    /**
-//     * should allow overriding of fullWidthBreakoutRowCadence
-//     * @return void
-//     */
-//    public function testFullBreakout()
-//    {
-//
-//        $geometry = justifiedLayout([1, 1, 1, 1, 2, 2, 2, 2], {
-//				fullWidthBreakoutRowCadence: 3
-//			});
-//
-//			$this->assertEquals($geometry->boxes[5]->width) . toEqual(1040);
-//			$this->assertEquals($geometry->boxes[6]->top) . toEqual($geometry->boxes[5]->top + $geometry->boxes[5]->height + 10);
-//
-//}
+    /**
+     * should allow overriding of containerWidth
+     * @return void
+     */
+    public function testFourSquares2()
+    {
+        $in = $this->toAR([1, 1, 1, 1]);
+        $config = new LayoutConfig(containerWidth: 400);
+        $geometry = $this->layoutJustify->compute($in, $config);
+        $this->assertEquals($this->four_squares_400, $geometry->toArray());
+    }
 
+    /**
+     * should allow overriding of containerPadding
+     * @return void
+     */
+    public function testPaddingInt()
+    {
+
+        $in = $this->toAR([1]);
+        $config = new LayoutConfig(containerPadding: 20);
+        $geometry = $this->layoutJustify->compute($in, $config);
+
+        $this->assertEquals(20, $geometry->boxes[0]->top);
+        $this->assertEquals(20, $geometry->boxes[0]->left);
+
+    }
+
+    /**
+     * should allow overriding of containerPadding with multiple dimensions
+     * @return void
+     */
+    public function testPaddingAll()
+    {
+
+        $in = $this->toAR([1]);
+        $config = new LayoutConfig(containerPadding: new LeftRightTopBottom(5, 10, 50, 10));
+        $geometry = $this->layoutJustify->compute($in, $config);
+
+        $this->assertEquals(50, $geometry->boxes[0]->top);
+        $this->assertEquals(5, $geometry->boxes[0]->left);
+    }
+
+    /**
+     * should allow overriding of boxSpacing
+     * @return void
+     */
+    public function testSpacingInt()
+    {
+
+        $in = $this->toAR([1, 1, 1, 1]);
+        $config = new LayoutConfig(boxSpacing: 40);
+        $geometry = $this->layoutJustify->compute($in, $config);
+
+        // 10 + 320 + 40 = 370
+        $this->assertEquals(370, $geometry->boxes[1]->left);
+        $this->assertEquals(370, $geometry->boxes[3]->top);
+
+    }
+
+    /**
+     * should allow overriding of boxSpacing with multiple dimensions
+     * @return void
+     */
+    public function testSpacing()
+    {
+
+        $in = $this->toAR([1, 1, 1, 1]);
+        $config = new LayoutConfig(boxSpacing: new HorizontalVertical(40, 5));
+        $geometry = $this->layoutJustify->compute($in, $config);
+
+        // 10 + 320 + 40 = 370
+        $this->assertEquals(370, $geometry->boxes[1]->left);
+        // 10 + 320 + 5 = 335
+        $this->assertEquals(335, $geometry->boxes[3]->top);
+
+    }
+
+    /**
+     * should allow overriding of targetRowHeight
+     * @return void
+     */
+    public function testRowHeight()
+    {
+
+        $in = $this->toAR([1, 1, 1, 1]);
+        $config = new LayoutConfig(targetRowHeight: 255, targetRowHeightTolerance: 0);
+        $geometry = $this->layoutJustify->compute($in, $config);
+
+        $this->assertEquals(255, $geometry->boxes[0]->height);
+
+    }
+
+    /**
+     * should allow overriding of targetRowHeightTolerance
+     * @return void
+     */
+    public function testRowHeightTolerance()
+    {
+        $in = $this->toAR([1, 1, 1]);
+        $config = new LayoutConfig(targetRowHeightTolerance: 0);
+        $geometry = $this->layoutJustify->compute($in, $config);
+
+        $this->assertEquals(320, $geometry->boxes[0]->height);
+
+    }
+
+    /**
+     * should allow overriding of maxNumRows
+     * @return void
+     */
+    public function testMaxNumRow()
+    {
+        $in = $this->toAR([1, 1, 1, 1]);
+        $config = new LayoutConfig(maxNumRows: 1);
+        $geometry = $this->layoutJustify->compute($in, $config);
+
+        $this->assertEquals(3, $geometry->boxes->count());
+
+    }
+
+    /**
+     * should allow overriding of forceAspectRatio
+     * @return void
+     */
+    public function testForceAspectRatio()
+    {
+
+        $in = $this->toAR([2, 2, 2, 2]);
+        $config = new LayoutConfig(forceAspectRatio: 1);
+        $geometry = $this->layoutJustify->compute($in, $config);
+
+
+        $this->assertEquals(340, $geometry->boxes[0]->width);
+        $this->assertEquals(340, $geometry->boxes[0]->height);
+        $this->assertTrue($geometry->boxes[0]->forcedAspectRatio);
+
+    }
+
+    /**
+     * should allow overriding of showWidows
+     * @return void
+     */
+    public function testNoWidows()
+    {
+
+        $in = $this->toAR([1, 1, 1, 1]);
+        $config = new LayoutConfig(showWidows: false);
+        $geometry = $this->layoutJustify->compute($in, $config);
+
+        $this->assertEquals(3, $geometry->boxes->count());
+
+}
+
+    /**
+     * should allow overriding of fullWidthBreakoutRowCadence
+     * @return void
+     */
+    public function testFullBreakout()
+    {
+        $in = $this->toAR([1, 1, 1, 1, 2, 2, 2, 2]);
+        $config = new LayoutConfig(fullWidthBreakoutRowCadence: 3);
+        $geometry = $this->layoutJustify->compute($in, $config);
+
+
+        $this->assertEquals(1040, $geometry->boxes[5]->width);
+        $this->assertEquals(1243, $geometry->boxes[5]->top + $geometry->boxes[5]->height + 10);
+        $this->assertEquals(1243, $geometry->boxes[6]->top);
+    }
 }

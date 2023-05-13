@@ -2,34 +2,32 @@
 
 namespace Tests\PhpFlickrJustifiedLayout;
 
+use LycheeOrg\PhpFlickrJustifiedLayout\LayoutConfig;
+
 class ContainerPaddingTest extends LayoutJustifyTest
 {
-//    describe('containerPadding', function () {
-//
-//    it('should add padding to the bottom of the container too', function () {
-//
-//        var
-//        geometry = justifiedLayout([1], {
-//				containerPadding: 100
-//			});
-//
-//			// 100 + 320 + 100
-//			expect(geometry . containerHeight) . toEqual(520);
-//
-//		});
-//
-//    it('should handle 0 padding', function () {
-//
-//        var
-//        geometry = justifiedLayout([1, 1, 1], {
-//				containerPadding: 0,
-//				targetRowHeightTolerance: 0
-//			});
-//
-//			expect(geometry . containerHeight) . toEqual(320);
-//
-//		});
-//
-//});
+    /**
+     * should add padding to the bottom of the container too
+     */
+    public function testPadding()
+    {
+        $in = $this->toAR([1]);
+        $config = new LayoutConfig(containerPadding: 100);
+        $geometry = $this->layoutJustify->compute($in, $config);
 
+        // 100 + 320 + 100
+        $this->assertEquals(520, $geometry->containerHeight);
+    }
+
+    /**
+     * should handle 0 padding
+     */
+    public function testPaddingRowTolerance()
+    {
+        $in = $this->toAR([1,1,1]);
+        $config = new LayoutConfig(containerPadding: 0, targetRowHeightTolerance: 0);
+        $geometry = $this->layoutJustify->compute($in, $config);
+
+        $this->assertEquals(320, $geometry->containerHeight);
+    }
 }

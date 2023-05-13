@@ -95,7 +95,7 @@ class LayoutJustify
 				// Row is filled; add it and start a new one
 				$laidOutItems = $laidOutItems->concat($this->addRow($currentRow)->all());
 
-				if ($this->layoutData->_rows->count() >= $this->layoutConfig->maxNumRows) {
+				if ($this->layoutConfig->maxNumRows >= 0 && $this->layoutData->_rows->count() >= $this->layoutConfig->maxNumRows) {
 					$currentRow = null;
 
 					return true;
@@ -110,7 +110,7 @@ class LayoutJustify
 					if ($currentRow->isLayoutComplete()) {
 						// If the rejected item fills a row on its own, add the row and start another new one
 						$laidOutItems = $laidOutItems->concat($this->addRow($currentRow)->all());
-						if ($this->layoutData->_rows->count() >= $this->layoutConfig->maxNumRows) {
+						if ($this->layoutConfig->maxNumRows >= 0 && $this->layoutData->_rows->count() >= $this->layoutConfig->maxNumRows) {
 							$currentRow = null;
 
 							return true;

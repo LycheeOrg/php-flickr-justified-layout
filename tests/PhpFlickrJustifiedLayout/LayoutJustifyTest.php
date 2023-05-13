@@ -2,71 +2,62 @@
 
 namespace Tests\PhpFlickrJustifiedLayout;
 
+use LycheeOrg\PhpFlickrJustifiedLayout\LayoutConfig;
+
 class LayoutJustifyTest extends BaseTestCase
 {
 
-//    /**
-//     * @group exif
-//     */
-//    public function testFalse()
-//    {
-//
-//        $this->assertFalse(false);
-//    }
-//
-//
-//    it('should create additional rows if it won\'t fit within constraints', function () {
-//
-//        var
-//        geometry = justifiedLayout([1, 2], {
-//			containerWidth: 200,
-//			targetRowHeight: 100
-//		});
-//
-//		expect(geometry . boxes[0] . top) . toEqual(10);
-//		expect(geometry . boxes[1] . top) . toEqual(200);
-//
-//	});
-//
-//    it('should not add the row if we are limiting it with maxNumRows', function () {
-//
-//        var
-//        geometry = justifiedLayout([1, 2, 1], {
-//			containerWidth: 200,
-//			targetRowHeight: 100,
-//			maxNumRows: 2
-//		});
-//
-//		expect(geometry . boxes . length) . toEqual(2);
-//
-//	});
-//
-//    it('should handle a panorama as only row item', function () {
-//
-//        var
-//        geometry = justifiedLayout([5]);
-//
-//        expect(geometry . boxes . length) . toEqual(1);
-//
-//    });
-//
-//    it('should allow new item added to the row to get closer to the targetRowHeight', function () {
-//
-//        var
-//        geometry = justifiedLayout([1, 4, 1.1], {
-//			containerWidth: 1000,
-//			targetRowHeight: 250
-//		});
-//
-//		expect(geometry . boxes[0] . height) . toEqual(194);
-//		expect(geometry . boxes[1] . height) . toEqual(194);
-//		expect(geometry . boxes[2] . height) . toEqual(194);
-//
-//	});
-//
-//
-//
-//
-//
-//});
+    /**
+     * should create additional rows if it won\'t fit within constraints
+     */
+    public function testJustifyConstraints() {
+
+        $in = $this->toAR([1,2]);
+        $config = new LayoutConfig(containerWidth: 200, targetRowHeight: 100);
+        $geometry = $this->layoutJustify->compute($in, $config);
+
+		$this->assertEquals(10, $geometry->boxes[0]->top);
+		$this->assertEquals(200, $geometry->boxes[1]->top);
+
+	}
+
+    /**
+     * should not add the row if we are limiting it with maxNumRows
+     */
+     public function testJustifyMaxNumRows() {
+
+        $in = $this->toAR([1,2, 1]);
+        $config = new LayoutConfig(containerWidth: 200, targetRowHeight: 100, maxNumRows: 2);
+        $geometry = $this->layoutJustify->compute($in, $config);
+
+		$this->assertEquals(2, $geometry->boxes->count());
+
+	}
+
+    /**
+     * should handle a panorama as only row item
+     */
+    public function testJustifyPanorama() {
+
+        $in = $this->toAR([5]);
+        $geometry = $this->layoutJustify->compute($in);
+
+        $this->assertEquals(1, $geometry->boxes->count());
+
+    }
+
+    /**
+     * should allow new item added to the row to get closer to the targetRowHeight
+     */
+     public function testJustifyTargetRowHeight() {
+
+         $in = $this->toAR([1,4, 1.1]);
+         $config = new LayoutConfig(containerWidth:1000, targetRowHeight: 250);
+         $geometry = $this->layoutJustify->compute($in, $config);
+
+		$this->assertEquals(194, $geometry->boxes[0]->height);
+		$this->assertEquals(194, $geometry->boxes[1]->height);
+		$this->assertEquals(194, $geometry->boxes[2]->height);
+
+	}
 }
