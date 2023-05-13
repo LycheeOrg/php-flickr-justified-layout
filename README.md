@@ -1,13 +1,12 @@
 # Flickr's Justified Layout in PHP
 
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/LycheeOrg/php-flickr-justified-layout/php.yml)](https://github.com/LycheeOrg/php-flickr-justified-layout/actions)
-[![Coverage Status](https://img.shields.io/codecov/c/github/LycheeOrg/php-flickr-justified-layout)](https://app.codecov.io/gh/LycheeOrg/php-flickr-justified-layout)
+[![Build Status][badge-status]][builds]
+[![Coverage Status][coverage-status]][coverage]
 
 Pass in box sizes and get back sizes and coordinates for a nice justified layout like that seen all
-over Flickr. The <a href="https://www.flickr.com/explore">explore page</a> is a great example. Here's
-another example using the `fullWidthBreakoutRowCadence` option on Flickr's
-<a href="https://www.flickr.com/photos/dataichi/albums/72157650151574962">album page</a>.
+over Flickr. The [explore page][flickr-explore] is a great example. Here's another example using
+the `fullWidthBreakoutRowCadence` option on Flickr's [album page][flickr-album].
 
 It converts this (simplified):
 
@@ -43,7 +42,7 @@ Into this (simplified):
 
 Which gives you everything you need to make something like this:
 
-![Demonstration](https://cloud.githubusercontent.com/assets/43693/14033849/f5cffb58-f1da-11e5-9763-dce7e90835e1.png)
+![Demonstration][demo-layout]
 
 ## Why?
 
@@ -110,3 +109,21 @@ public function __construct(
 | $fullWidthBreakoutRowCadence | `false|int`              | `false`   | If you'd like to insert a full width box every `n` rows you can specify it with this parameter. The box on that row will ignore the `targetRowHeight`, make itself as wide as `containerWidth - containerPadding` and be as tall as its aspect ratio defines. It'll only happen if that item has an aspect ratio >= 1. Best to have a look at the examples to see what this does.
 | $widowLayoutStyle            | `string`                 | `justify` | Justify for the widows, possible values are `left`, `center` and `justify`
 
+
+## Open Source Community Support
+
+<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/PhpStorm_icon.png" alt="PhpStorm" width="50"/>
+
+We would like to thank Jetbrains for supporting us with their [Open Source Development - Community Support][jetbrains-opensource] program.
+
+[badge-status]: https://img.shields.io/github/actions/workflow/status/LycheeOrg/php-flickr-justified-layout/php.yml
+[builds]: https://github.com/LycheeOrg/php-flickr-justified-layout/actions
+[coverage-status]: https://img.shields.io/codecov/c/github/LycheeOrg/php-flickr-justified-layout
+[coverage]: https://app.codecov.io/gh/LycheeOrg/php-flickr-justified-layout
+
+[flickr-explore]: https://www.flickr.com/explore
+[flickr-album]: https://www.flickr.com/photos/dataichi/albums/72157650151574962
+
+[demo-layout]: https://cloud.githubusercontent.com/assets/43693/14033849/f5cffb58-f1da-11e5-9763-dce7e90835e1.png
+
+[jetbrains-opensource]: https://www.jetbrains.com/community/opensource/
