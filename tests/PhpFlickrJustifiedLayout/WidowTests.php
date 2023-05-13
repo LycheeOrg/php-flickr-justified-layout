@@ -88,7 +88,7 @@ class WidowTests extends LayoutJustifyTest
     public function testLayoutsForCenteredWidows()
     {
         foreach ($this->testLayoutsForCenteredWidows as $arrIn) {
-            $this->isThisWidowRowCentered($this->toAR($arrIn));
+            $this->assertTrue($this->isThisWidowRowCentered($this->toAR($arrIn)));
         }
     }
 
