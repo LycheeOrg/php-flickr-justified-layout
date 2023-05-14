@@ -16,39 +16,39 @@ class LayoutConfig
 	public readonly false|float $forceAspectRatio;
 	public readonly bool $showWidows;
 	public readonly false|int $fullWidthBreakoutRowCadence;
-	public string $widowLayoutStyle;
+	public readonly string $widowLayoutStyle;
 
 	public function __construct(
-		null|int $containerWidth = null,
-		null|int|LeftRightTopBottom $containerPadding = null,
-		null|int|HorizontalVertical $boxSpacing = null,
-		null|int $targetRowHeight = null,
-		null|float $targetRowHeightTolerance = null,
-		null|false|int $maxNumRows = null,
-		null|false|float $forceAspectRatio = null,
-		null|bool $showWidows = null,
-		null|false|int $fullWidthBreakoutRowCadence = null,
-		null|string $widowLayoutStyle = null,
+		int $containerWidth = 1060,
+		int|LeftRightTopBottom $containerPadding = 10,
+		int|HorizontalVertical $boxSpacing = 10,
+		int $targetRowHeight = 320,
+		float $targetRowHeightTolerance = 0.25,
+		false|int $maxNumRows = false,
+		false|float $forceAspectRatio = false,
+		bool $showWidows = true,
+		false|int $fullWidthBreakoutRowCadence = false,
+		string $widowLayoutStyle = 'left',
 	) {
-		$this->containerWidth = $containerWidth ?? 1060;
-		$this->targetRowHeight = $targetRowHeight ?? 320;
-		$this->targetRowHeightTolerance = $targetRowHeightTolerance ?? 0.25;
-		$this->maxNumRows = $maxNumRows ?? false;
-		$this->forceAspectRatio = $forceAspectRatio ?? false;
-		$this->showWidows = $showWidows ?? true;
-		$this->fullWidthBreakoutRowCadence = $fullWidthBreakoutRowCadence ?? false;
-		$this->widowLayoutStyle = $widowLayoutStyle ?? 'left';
+		$this->containerWidth = $containerWidth;
+		$this->targetRowHeight = $targetRowHeight;
+		$this->targetRowHeightTolerance = $targetRowHeightTolerance;
+		$this->maxNumRows = $maxNumRows;
+		$this->forceAspectRatio = $forceAspectRatio;
+		$this->showWidows = $showWidows;
+		$this->fullWidthBreakoutRowCadence = $fullWidthBreakoutRowCadence;
+		$this->widowLayoutStyle = $widowLayoutStyle;
 
 		if (is_int($containerPadding)) {
 			$containerPadding = new LeftRightTopBottom($containerPadding, $containerPadding, $containerPadding, $containerPadding);
 		}
 
-		$this->containerPadding = $containerPadding ?? new LeftRightTopBottom(10, 10, 10, 10);
+		$this->containerPadding = $containerPadding;
 
 		if (is_int($boxSpacing)) {
 			$boxSpacing = new HorizontalVertical($boxSpacing, $boxSpacing);
 		}
 
-		$this->boxSpacing = $boxSpacing ?? new HorizontalVertical(10, 10);
+		$this->boxSpacing = $boxSpacing;
 	}
 }
