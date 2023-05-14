@@ -6,8 +6,6 @@ use LycheeOrg\PhpFlickrJustifiedLayout\DTO\Item;
 
 use PHPUnit\Framework\TestCase;
 
-use function Safe\json_encode;
-
 class ItemTest extends TestCase
 {
 
@@ -16,18 +14,20 @@ class ItemTest extends TestCase
         $item = new Item(
             aspectRatio: 1,
             width: 340,
-            height: 340,
+            height: 350,
             top: 10,
-            left: 10
+            left: 20
         );
 
         self::assertEquals([
             "aspectRatio" => 1,
             "top" => 10,
             "width" => 340,
-            "height" => 340,
-            "left" => 10
+            "height" => 350,
+            "left" => 20
         ], $item->toArray()
         );
+
+        self::assertEquals("top: 10px; width: 340px; height: 350px; left: 20px;", $item->toCSS());
     }
 }

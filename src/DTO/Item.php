@@ -41,4 +41,14 @@ class Item implements Arrayable
 			'left' => $this->left,
 		];
 	}
+
+	/**
+	 * Return the css string used to place the box.
+	 * 
+	 * @return string 
+	 */
+	public function toCSS(): string
+	{
+		return sprintf("top: %dpx; width: %dpx; height: %dpx; left: %dpx;", $this->top, $this->width, $this->height, $this->left);
+	}
 }
