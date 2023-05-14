@@ -44,11 +44,11 @@ class Item implements Arrayable
 
 	/**
 	 * Return the css string used to place the box.
-	 * 
-	 * @return string 
+	 *
+	 * @return string
 	 */
 	public function toCSS(): string
 	{
-		return sprintf("top: %dpx; width: %dpx; height: %dpx; left: %dpx;", $this->top, $this->width, $this->height, $this->left);
+		return sprintf('top: %dpx; width: %dpx; height: %dpx; left: %dpx;', $this->top, $this->width, $this->height, $this->left);
 	}
 }
