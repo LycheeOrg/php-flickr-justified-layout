@@ -5,7 +5,7 @@ namespace LycheeOrg\PhpFlickrJustifiedLayout\DTO;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;
 
-class Result implements Arrayable
+class Geometry implements Arrayable
 {
 	public readonly int $containerHeight;
 	public readonly int $widowCount;

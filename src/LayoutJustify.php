@@ -8,7 +8,7 @@ use LycheeOrg\PhpFlickrJustifiedLayout\Contracts\WidthHeight;
 use LycheeOrg\PhpFlickrJustifiedLayout\DTO\Item;
 use LycheeOrg\PhpFlickrJustifiedLayout\DTO\LayoutData;
 use LycheeOrg\PhpFlickrJustifiedLayout\DTO\Param;
-use LycheeOrg\PhpFlickrJustifiedLayout\DTO\Result;
+use LycheeOrg\PhpFlickrJustifiedLayout\DTO\Geometry;
 
 class LayoutJustify
 {
@@ -70,7 +70,7 @@ class LayoutJustify
 	 *
 	 * @param Collection<int,Item> $itemLayoutData Array of items to lay out, with data required to lay out each item
 	 *
-	 * @return Result The newly-calculated layout, containing the new container height, and lists of layout items
+	 * @return Geometry The newly-calculated layout, containing the new container height, and lists of layout items
 	 */
 	private function computeLayout(Collection $itemLayoutData)
 	{
@@ -150,7 +150,7 @@ class LayoutJustify
 		// Then add our bottom container padding
 		$this->layoutData->_containerHeight = $this->layoutData->_containerHeight + $this->layoutConfig->containerPadding->bottom;
 
-		return new Result($this->layoutData);
+		return new Geometry($this->layoutData);
 	}
 
 	/**
@@ -160,9 +160,9 @@ class LayoutJustify
 	 * @param Collection<int,AspectRatio>|Collection<int,WidthHeight> $input  Array of objects with widths and heights
 	 * @param LayoutConfig                                            $config Configuration
 	 *
-	 * @return Result A list of aspect ratios
+	 * @return Geometry A list of aspect ratios
 	 */
-	public function compute(Collection $input, LayoutConfig $config = new LayoutConfig()): Result
+	public function compute(Collection $input, LayoutConfig $config = new LayoutConfig()): Geometry
 	{
 		$this->layoutConfig = $config;
 		$this->layoutData = new LayoutData();
