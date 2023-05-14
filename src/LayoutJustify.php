@@ -5,10 +5,10 @@ namespace LycheeOrg\PhpFlickrJustifiedLayout;
 use Illuminate\Support\Collection;
 use LycheeOrg\PhpFlickrJustifiedLayout\Contracts\AspectRatio;
 use LycheeOrg\PhpFlickrJustifiedLayout\Contracts\WidthHeight;
+use LycheeOrg\PhpFlickrJustifiedLayout\DTO\Geometry;
 use LycheeOrg\PhpFlickrJustifiedLayout\DTO\Item;
 use LycheeOrg\PhpFlickrJustifiedLayout\DTO\LayoutData;
 use LycheeOrg\PhpFlickrJustifiedLayout\DTO\Param;
-use LycheeOrg\PhpFlickrJustifiedLayout\DTO\Geometry;
 
 class LayoutJustify
 {
