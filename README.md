@@ -82,18 +82,18 @@ Objects passed to the compute method must implement the `AspectRatio` or `WidthH
 See Config Object:
 
 ```php
-	public function __construct(
-		int $containerWidth = 1060,
-		int|LeftRightTopBottom $containerPadding = 10,
-		int|HorizontalVertical $boxSpacing = 10,
-		int $targetRowHeight = 320,
-		float $targetRowHeightTolerance = 0.25,
-		false|int $maxNumRows = false,
-		false|float $forceAspectRatio = false,
-		bool $showWidows = true,
-		false|int $fullWidthBreakoutRowCadence = false,
-		string $widowLayoutStyle = 'left',
-	){...}
+public function __construct(
+    int $containerWidth = 1060,
+    int|LeftRightTopBottom $containerPadding = 10,
+    int|HorizontalVertical $boxSpacing = 10,
+    int $targetRowHeight = 320,
+    float $targetRowHeightTolerance = 0.25,
+    false|int $maxNumRows = false,
+    false|float $forceAspectRatio = false,
+    bool $showWidows = true,
+    false|int $fullWidthBreakoutRowCadence = false,
+    string $widowLayoutStyle = 'left',
+){...}
 ```
 
 | Parameter                    | Type                     | Default   | Description
