@@ -3,7 +3,7 @@
     "description": "Port of the famous flikr justified layout JS gallery to php for serverside computation",
     "type": "library",
     "license": "MIT",
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "Tests\\": "tests/",
@@ -14,9 +14,9 @@
         "illuminate/collections": "^10.10"
     },
     "require-dev": {
-        "lychee-org/phpstan-lychee": "^v1.0.1",
-        "phpunit/phpunit": "^10.2@dev",
-        "symfony/var-dumper": "6.3.x-dev"
+        "lychee-org/phpstan-lychee": "^v1.0.2",
+        "phpunit/phpunit": "^10.1",
+        "symfony/var-dumper": "^6.2"
     },
 
     "scripts": {
